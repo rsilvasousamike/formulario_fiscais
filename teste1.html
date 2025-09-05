@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulário de Fiscais</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      background-image: url('Cop.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.90);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-top: 5px solid #0056b3;
+    }
+    h2, h3 { text-align: center; color: #0056b3; }
+    h3 { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+    label { display: block; margin-top: 15px; font-weight: 500; }
+    input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; box-sizing: border-box; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; }
+    textarea { min-height: 100px; }
+    select:disabled { background-color: #e9ecef; }
+    button { cursor: pointer; margin-top: 20px; width: 100%; background-color: #0056b3; color: white; border: none; border-radius: 5px; padding: 15px; font-size: 16px; font-weight: 700; transition: background-color 0.3s; }
+    button:hover { background-color: #004494; }
+    button:disabled { background-color: #a0a0a0; cursor: not-allowed; }
+    .logo-container { text-align: center; margin-bottom: 20px; }
+    .logo { max-width: 150px; height: auto; }
+    .loader { border: 5px solid #f3f3f3; border-top: 5px solid #0056b3; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto 0; }
+    .hidden { display: none; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    #status { margin-top: 15px; padding: 12px; border-radius: 5px; font-weight: 500; text-align: center; }
+    .status-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .status-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="logo-container">
+      <img src="DTIC.png" alt="Logótipo da Organização" class="logo">
+    </div>
+
+    <h2>Formulário Fiscais</h2>
+    <h3>Atualização dos Fiscais de contrato das COPs</h3>
+
+    <form id="fiscalForm">
+      
+      <h3>Dados da Unidade</h3>
+      <label for="grandeComando">Grande Comando:</label>
+      <select id="grandeComando" name="grandeComando" required>
+        <option value="" disabled selected>Selecione o Grande Comando</option>
+        <option value="CPA/M-1">CPA/M-1</option>
+        <option value="CPA/M-2">CPA/M-2</option>
+        <option value="CPA/M-3">CPA/M-3</option>
+        <option value="CPA/M-4">CPA/M-4</option>
+        <option value="CPA/M-5">CPA/M-5</option>
+        <option value="CPA/M-6">CPA/M-6</option>
+        <option value="CPA/M-7">CPA/M-7</option>
+        <option value="CPA/M-8">CPA/M-8</option>
+        <option value="CPA/M-9">CPA/M-9</option>
+        <option value="CPA/M-10">CPA/M-10</option>
+        <option value="CPA/M-11">CPA/M-11</option>
+        <option value="CPA/M-12">CPA/M-12</option>
+        <option value="CPI-1">CPI-1</option>
+        <option value="CPI-2">CPI-2</option>
+        <option value="CPI-3">CPI-3</option>
+        <option value="CPI-4">CPI-4</option>
+        <option value="CPI-5">CPI-5</option>
+        <option value="CPI-6">CPI-6</option>
+        <option value="CPI-7">CPI-7</option>
+        <option value="CPI-8">CPI-8</option>
+        <option value="CPI-9">CPI-9</option>
+        <option value="CPI-10">CPI-10</option>
+        <option value="CPAmb">CPAmb</option>
+        <option value="CPChq">CPChq</option>
+        <option value="CPRv">CPRv</option>
+        <option value="CPTran">CPTran</option>
+      </select>
+
+      <label for="batalhao">Batalhão:</label>
+      <select id="batalhao" name="batalhao" required disabled>
+        <option value="" disabled selected>Primeiro, selecione o Grande Comando</option>
+      </select>
+
+      <h3>Fiscal 1</h3>
+      <label for="nome1">Nome Completo:</label>
+      <input type="text" id="nome1" name="nome1" required />
+      <label for="nomeGuerra1">Nome de Guerra:</label>
+      <input type="text" id="nomeGuerra1" name="nomeGuerra1" required />
+      <label for="graduacao1">Graduação:</label>
+      <select id="graduacao1" name="graduacao1" required>
+        <option value="" disabled selected>Selecione</option>
+        <option value="SD PM">SD PM</option>
+        <option value="CB PM">CB PM</option>
+        <option value="3º SGT PM">3º SGT PM</option>
+        <option value="2º SGT PM">2º SGT PM</option>
+        <option value="1º SGT PM">1º SGT PM</option>
+        <option value="SUBTEN PM">SUBTEN PM</option>
+        <option value="ASP OF PM">ASP OF PM</option>
+        <option value="2º TEN PM">2º TEN PM</option>
+        <option value="1º TEN PM">1º TEN PM</option>
+        <option value="CAP PM">CAP PM</option>
+        <option value="MAJ PM">MAJ PM</option>
+        <option value="TEN CEL PM">TEN CEL PM</option>
+      </select>
+      <label for="re1">RE:</label>
+      <input type="text" id="re1" name="re1" required placeholder="000000-0" maxlength="8" pattern="^\d{6}-\d{1}$" title="Formato esperado: 000000-0" />
+      <label for="cpf1">CPF:</label>
+      <input type="text" id="cpf1" name="cpf1" required placeholder="000.000.000-00" maxlength="14" />
+      <label for="telefone1">Telefone:</label>
+      <input type="tel" id="telefone1" name="telefone1" required placeholder="(00) 00000-0000" maxlength="15" />
+      <label for="email1">E-mail:</label>
+      <input type="email" id="email1" name="email1" required />
+
+      <h3>Fiscal 2</h3>
+      <label for="nome2">Nome Completo:</label>
+      <input type="text" id="nome2" name="nome2" required />
+      <label for="nomeGuerra2">Nome de Guerra:</label>
+      <input type="text" id="nomeGuerra2" name="nomeGuerra2" required />
+      <label for="graduacao2">Graduação:</label>
+      <select id="graduacao2" name="graduacao2" required>
+        <option value="" disabled selected>Selecione</option>
+        <option value="SD PM">SD PM</option>
+        <option value="CB PM">CB PM</option>
+        <option value="3º SGT PM">3º SGT PM</option>
+        <option value="2º SGT PM">2º SGT PM</option>
+        <option value="1º SGT PM">1º SGT PM</option>
+        <option value="SUBTEN PM">SUBTEN PM</option>
+        <option value="ASP OF PM">ASP OF PM</option>
+        <option value="2º TEN PM">2º TEN PM</option>
+        <option value="1º TEN PM">1º TEN PM</option>
+        <option value="CAP PM">CAP PM</option>
+        <option value="MAJ PM">MAJ PM</option>
+        <option value="TEN CEL PM">TEN CEL PM</option>
+      </select>
+      <label for="re2">RE:</label>
+      <input type="text" id="re2" name="re2" required placeholder="000000-0" maxlength="8" pattern="^\d{6}-\d{1}$" title="Formato esperado: 000000-0" />
+      <label for="cpf2">CPF:</label>
+      <input type="text" id="cpf2" name="cpf2" required placeholder="000.000.000-00" maxlength="14" />
+      <label for="telefone2">Telefone:</label>
+      <input type="tel" id="telefone2" name="telefone2" required placeholder="(00) 00000-0000" maxlength="15" />
+      <label for="email2">E-mail:</label>
+      <input type="email" id="email2" name="email2" required />
+
+      <h3>Fiscal 3</h3>
+      <label for="nome3">Nome Completo:</label>
+      <input type="text" id="nome3" name="nome3" required />
+      <label for="nomeGuerra3">Nome de Guerra:</label>
+      <input type="text" id="nomeGuerra3" name="nomeGuerra3" required />
+      <label for="graduacao3">Graduação:</label>
+      <select id="graduacao3" name="graduacao3" required>
+        <option value="" disabled selected>Selecione</option>
+        <option value="SD PM">SD PM</option>
+        <option value="CB PM">CB PM</option>
+        <option value="3º SGT PM">3º SGT PM</option>
+        <option value="2º SGT PM">2º SGT PM</option>
+        <option value="1º SGT PM">1º SGT PM</option>
+        <option value="SUBTEN PM">SUBTEN PM</option>
+        <option value="ASP OF PM">ASP OF PM</option>
+        <option value="2º TEN PM">2º TEN PM</option>
+        <option value="1º TEN PM">1º TEN PM</option>
+        <option value="CAP PM">CAP PM</option>
+        <option value="MAJ PM">MAJ PM</option>
+        <option value="TEN CEL PM">TEN CEL PM</option>
+      </select>
+      <label for="re3">RE:</label>
+      <input type="text" id="re3" name="re3" required placeholder="000000-0" maxlength="8" pattern="^\d{6}-\d{1}$" title="Formato esperado: 000000-0" />
+      <label for="cpf3">CPF:</label>
+      <input type="text" id="cpf3" name="cpf3" required placeholder="000.000.000-00" maxlength="14" />
+      <label for="telefone3">Telefone:</label>
+      <input type="tel" id="telefone3" name="telefone3" required placeholder="(00) 00000-0000" maxlength="15" />
+      <label for="email3">E-mail:</label>
+      <input type="email" id="email3" name="email3" required />
+      
+      <h3>Observações</h3>
+      <label for="observacao">Observações (opcional):</label>
+      <textarea id="observacao" name="observacao"></textarea>
+      
+      <button type="submit" id="submitButton">Enviar Dados</button>
+      
+      <div id="loader" class="loader hidden"></div>
+      <div id="status"></div>
+    </form>
+  </div>
+
+<script>
+  // --- LÓGICA PARA DROPDOWNS DEPENDENTES ---
+  const batalhoesPorComando = {
+    "CPA/M-1": ["7º BPM/M", "11º BPM/M", "13º BPM/M", "7° Baep"],
+    "CPA/M-2": ["3º BPM/M", "12º BPM/M", "46º BPM/M"],
+    "CPA/M-3": ["5º BPM/M", "9º BPM/M", "18º BPM/M", "43º BPM/M"],
+    "CPA/M-4": ["2º BPM/M", "29º BPM/M", "39º BPM/M", "48º BPM/M", "4° Baep"],
+    "CPA/M-5": ["4º BPM/M", "16º BPM/M", "23º BPM/M", "49º BPM/M"],
+    "CPA/M-6": ["6º BPM/M", "10º BPM/M", "24º BPM/M", "30º BPM/M", "6° Baep"],
+    "CPA/M-7": ["15º BPM/M", "26º BPM/M", "31º BPM/M", "15° Baep"],
+    "CPA/M-8": ["14º BPM/M", "20º BPM/M", "25º BPM/M", "33º BPM/M", "36º BPM/M", "5° Baep"],
+    "CPA/M-9": ["19º BPM/M", "28º BPM/M", "38º BPM/M"],
+    "CPA/M-10": ["1º BPM/M", "22º BPM/M", "27º BPM/M", "37º BPM/M"],
+    "CPA/M-11": ["8º BPM/M", "21º BPM/M"],
+    "CPA/M-12": ["17º BPM/M", "32º BPM/M", "35º BPM/M"],
+    "CPI-1": ["1º BPM/I", "5º BPM/I", "20º BPM/I", "23º BPM/I", "41º BPM/I", "46º BPM/I", "3º Baep"],
+    "CPI-2": ["8º BPM/I", "11º BPM/I", "26º BPM/I", "34º BPM/I", "35º BPM/I", "47º BPM/I", "49º BPM/I", "1º Baep"],
+    "CPI-3": ["3º BPM/I", "13º BPM/I", "15º BPM/I", "33º BPM/I", "38º BPM/I", "43º BPM/I", "51º BPM/I", "11º Baep"],
+    "CPI-4": ["4º BPM/I", "9º BPM/I", "27º BPM/I", "31º BPM/I", "44º BPM/I", "13° Baep"],
+    "CPI-5": ["16º BPM/I", "17º BPM/I", "30º BPM/I", "52º BPM/I", "9º Baep"],
+    "CPI-6": ["6º BPM/I", "14º BPM/I", "21º BPM/I", "29º BPM/I", "39º BPM/I", "45º BPM/I", "2º Baep"],
+    "CPI-7": ["7º BPM/I", "12º BPM/I", "22º BPM/I", "40º BPM/I", "50º BPM/I", "53º BPM/I", "54º BPM/I", "14º Baep"],
+    "CPI-8": ["18º BPM/I", "25º BPM/I", "32º BPM/I", "42º BPM/I", "8º Baep"],
+    "CPI-9": ["10º BPM/I", "19º BPM/I", "24º BPM/I", "36º BPM/I", "37º BPM/I", "48º BPM/I", "10º Baep"],
+    "CPI-10": ["2º BPM/I", "28º BPM/I", "12º Baep"],
+    "CPAmb": ["1º BPAmb", "2º BPAmb", "3º BPAmb", "4º BPAmb", "5º BPAmb"],
+    "CPChq": ["1º BPChq", "2º BPChq", "3º BPChq", "4º BPChq", "5º BPChq", "RPMon"],
+    "CPRv": ["1º BPRv", "2º BPRv", "3º BPRv", "4º BPRv", "5º BPRv", "6º BPRv"],
+    "CPTran": ["1º BPTran", "2º BPTran"],
+  };
+  const grandeComandoSelect = document.getElementById('grandeComando');
+  const batalhaoSelect = document.getElementById('batalhao');
+  grandeComandoSelect.addEventListener('change', function(e) {
+    const comandoSelecionado = e.target.value;
+    const batalhoes = batalhoesPorComando[comandoSelecionado] || [];
+    batalhaoSelect.innerHTML = '';
+    if (batalhoes.length > 0) {
+      batalhaoSelect.disabled = false;
+      batalhaoSelect.innerHTML = '<option value="" disabled selected>Selecione o Batalhão</option>';
+      batalhoes.forEach(function(batalhao) {
+        const option = document.createElement('option');
+        option.value = batalhao;
+        option.textContent = batalhao;
+        batalhaoSelect.appendChild(option);
+      });
+    } else {
+      batalhaoSelect.disabled = true;
+      batalhaoSelect.innerHTML = '<option value="" disabled selected>Primeiro, selecione o Grande Comando</option>';
+    }
+  });
+
+  // --- MÁSCARAS DE FORMATAÇÃO AUTOMÁTICA ---
+  function formatarCPF(cpf) {
+    cpf = cpf.replace(/\D/g, "");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    return cpf;
+  }
+  function formatarTelefone(telefone) {
+    telefone = telefone.replace(/\D/g, "");
+    telefone = telefone.replace(/^(\d{2})(\d)/g, "($1) $2");
+    telefone = telefone.replace(/(\d)(\d{4})$/, "$1-$2");
+    return telefone;
+  }
+  // NOVO: Função para formatar o RE
+  function formatarRE(re) {
+    re = re.replace(/\D/g, ""); // Remove tudo que não é dígito
+    re = re.replace(/(\d{6})(\d)/, "$1-$2"); // Coloca o hífen depois do 6º dígito
+    return re;
+  }
+
+  for (let i = 1; i <= 3; i++) {
+    // NOVO: Adicionado o listener para os campos RE
+    document.getElementById('re' + i).addEventListener('input', (e) => { e.target.value = formatarRE(e.target.value); });
+    document.getElementById('cpf' + i).addEventListener('input', (e) => { e.target.value = formatarCPF(e.target.value); });
+    document.getElementById('telefone' + i).addEventListener('input', (e) => { e.target.value = formatarTelefone(e.target.value); });
+  }
+
+  // --- LÓGICA DE ENVIO PARA A PLANILHA ---
+  const form = document.getElementById('fiscalForm');
+  const statusDiv = document.getElementById('status');
+  const submitButton = document.getElementById('submitButton');
+  const loader = document.getElementById('loader');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzENI9DsKvEvDXFmWHF_JEnWvHXZ9D86AumVYb0S_SRUR_8K8NtGzPdBTTYxOEcj1Tt/exec';
+    
+    const unidadeData = {
+      grandeComando: document.getElementById('grandeComando').value,
+      batalhao: document.getElementById('batalhao').value,
+      observacao: document.getElementById('observacao').value
+    };
+    const fiscais = [];
+    for (let i = 1; i <= 3; i++) {
+      fiscais.push({
+        nome: document.getElementById('nome' + i).value,
+        nomeGuerra: document.getElementById('nomeGuerra' + i).value,
+        graduacao: document.getElementById('graduacao' + i).value,
+        re: document.getElementById('re' + i).value,
+        cpf: document.getElementById('cpf' + i).value,
+        telefone: document.getElementById('telefone' + i).value,
+        email: document.getElementById('email' + i).value
+      });
+    }
+    const finalData = { unidade: unidadeData, fiscais: fiscais };
+
+    submitButton.disabled = true;
+    loader.classList.remove('hidden');
+    statusDiv.className = '';
+    statusDiv.textContent = '';
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(finalData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.result === 'success') {
+        statusDiv.className = 'status-success';
+        statusDiv.textContent = 'Dados dos 3 fiscais enviados com sucesso!';
+        form.reset();
+      } else { throw new Error(data.message || 'Ocorreu um erro desconhecido.'); }
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      statusDiv.className = 'status-error';
+      statusDiv.textContent = 'Erro ao enviar: ' + error.message;
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+      loader.classList.add('hidden');
+    });
+  });
+</script>
+</body>
+</html>
